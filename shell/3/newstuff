@@ -1,0 +1,16 @@
+from pwn import * 
+
+
+ssh = ssh("acidburn","192.168.56.103")
+
+r= ssh.process("r")
+
+gdb.attach(r, """
+	b *0x000401200
+	c
+	""")
+
+input("wait")
+
+
+ 

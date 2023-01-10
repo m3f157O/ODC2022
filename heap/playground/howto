@@ -1,0 +1,5 @@
+leak heap
+leak libc
+
+calculate offset ecc. ecc. end up with 
+HUGE page overlapping, start writing from inside heap, smash free hook

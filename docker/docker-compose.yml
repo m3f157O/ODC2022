@@ -1,0 +1,12 @@
+version: "3"
+services:
+  custom:
+    build: .
+    ports:
+    - "2022:2022"
+    container_name: ctf-custom # Change this 
+    volumes:
+     - ../../malicious:/malicious
+    command: socat tcp-listen:4001,fork,reuseaddr exec:"/chall/custom" # Change file_name
+    network_mode: host
+

